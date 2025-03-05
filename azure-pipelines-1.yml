@@ -1,0 +1,14 @@
+pool:
+  vmImage: ubuntu-latest
+
+jobs:
+  - job: teardown_infra
+    displayName: 'Teardown Infra'
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'BicepTutorialServiceConnection'
+        subscriptionId: 'cc46f13d-94a3-4bf2-970a-15b46f9d821a'
+        action: 'DeleteRG'
+        resourceGroupName: 'bicep-rg'
